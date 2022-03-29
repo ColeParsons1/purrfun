@@ -1,5 +1,5 @@
 from django.contrib import admin
-from tinymce.widgets import TinyMCE
+#from tinymce.widgets import TinyMCE
 from django.db import models
 from django.contrib import admin
 from django.db import models
@@ -11,10 +11,11 @@ from django.contrib import auth
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext_lazy as _
+#from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.sites import AdminSite
 #from .models import Profile
 from .models import Topic
+from .models import Meme_Template
 from API.models import API_Test
 from .models import Post, Comment, Repost, Liked_Post, Profile, default_profile_pic, Report, Flagged_Post, Message, Notification, User_Groups
 #from friendship.admin import 
@@ -30,6 +31,7 @@ admin.site.register(Message)
 admin.site.register(Notification)
 admin.site.register(User_Groups)
 admin.site.register(API_Test)
+admin.site.register(Meme_Template)
 @admin.register(Comment)
 
 

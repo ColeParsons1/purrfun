@@ -15,8 +15,7 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from django.conf.urls import url
-from django.conf.urls import include, url
+from django.conf.urls import include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,20 +24,32 @@ from main import views
 from main import views as core_views
 from API import views as api_views
 from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework import routers
+from django.views.decorators.csrf import csrf_exempt
 
+#router = routers.DefaultRouter()
+#router.register('', views.ProfileList.as_view()),
 
 
 urlpatterns = [
-    path('', include('main.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('index/', include('main.urls')),
     path('admin/', admin.site.urls),
-    path('groups/', api_views.GroupList.as_view()),
-    path('profiles/', views.ProfileList.as_view()),
-    path('ratings/', include('star_ratings.urls', namespace='ratings')),
-    path('tinymce/', include('tinymce.urls')),
+    path('groups/', views.GroupViewSet.as_view()),
+    path('login/', views.LoginViewSet.as_view()),
+    path('profiles/', views.ProfileViewSet.as_view()),
+    path('profile/', views.ProfileOtherUserViewSet.as_view()),
+    path('messages/', views.MessageViewSet.as_view()),
+    path('topics/', views.TopicViewSet.as_view()),
+    path('notifications/', views.NotificationViewSet.as_view()),
+    path('like/', views.LikeViewSet.as_view()),
+    path('posts/', views.PostViewSet.as_view()),
+    path('post/', views.PostDetailViewSet.as_view()),
     path('main/', views.index, name='index'),
     path('about/', views.about, name='about'),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
+    path('template/', views.ImageViewSet.as_view()),
     path('results/', views.SearchView, name='search'),
     path('(<post_id>[0-9]+)/(<username>[a-zA-Z0-9]+)/DM/', views.DMPost, name='DMPost'),
     path('(<post_id>[0-9]+)/message/', views.message, name='message'),

@@ -16,17 +16,45 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+    },
+}
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '4tua0um*_4(lzuz($o@chs0rm9m)6_9#9_f$$xzp=x(3g6y5i1'
 
+#API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+REST_FRAMEWORK = {
+
+    'DATETIME_FORMAT': "%m-%d-%Y | %H:%M",
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
@@ -68,10 +96,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'API.apps.ApiConfig',
-    'star_ratings',
     'rest_framework',
-    'responsive',
-    'tinymce',
+    'rest_framework_api_key',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +111,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 MIDDLEWARE_CLASSES = (
     'responsive.middleware.ResponsiveMiddleware',
 )
@@ -92,6 +120,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'responsive.context_processors.device',
 )
+
 
 RESPONSIVE_MEDIA_QUERIES = {
     'iphone': {
@@ -102,6 +131,8 @@ RESPONSIVE_MEDIA_QUERIES = {
 }
 
 ROOT_URLCONF = 'mysite.urls'
+
+#CORS_ORIGIN_WHITELIST = ( '0.0.0.0:8000', )
 
 TEMPLATES = [
     {
@@ -120,6 +151,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
+
+
+
 
 
 # Database

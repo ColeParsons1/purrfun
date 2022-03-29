@@ -25,7 +25,7 @@ from warnings import warn
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models import Avg, Count, Sum
-from django.utils.translation import ugettext as _
+#from django.utils.translation import ugettext as _
 #from star_ratings.models import UserRatingManager
 #from star_ratings.models import RatingManager
 #from star_ratings.models import UserRating
@@ -44,7 +44,9 @@ class API_Test(models.Model):
     
     def __unicode__(self):
        return self.Label     
-       
+ 
+
+
 
 
         

@@ -23,17 +23,22 @@ from django.contrib.contenttypes.models import ContentType
 from decimal import Decimal
 from warnings import warn
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db.models import Avg, Count, Sum
-from django.utils.translation import ugettext as _
-#from star_ratings.models import UserRatingManager
-#from star_ratings.models import RatingManager
-#from star_ratings.models import UserRating
-#from star_ratings.models import Rating
-#from star_ratings.models import AbstractBaseRating
-#from star_ratings import app_settings, get_star_ratings_rating_model_name, get_star_ratings_rating_model
+#from django.utils.translation import ugettext as _
+
 
 import uuid
+
+
+
+
+class Meme_Template(models.Model):
+    Image = models.ImageField(blank=True, null=True)
+
+    #def __str__(self):
+        #return self
 
 
 class Topic(models.Model):
@@ -53,18 +58,30 @@ class User_Groups(models.Model):
        
 
 class Post(models.Model):
-    Author = models.ForeignKey(User, on_delete=models.CASCADE)
+    Author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    Author_Profile = models.ForeignKey('main.Profile', on_delete=models.CASCADE, blank=True, null=True)
+    Author_Profile_Picture = models.CharField(max_length=300, blank=True, null=True)
+    Author_Display_Name = models.CharField(max_length=300, blank=True, null=True)
     Topic = models.ForeignKey(Topic, on_delete=models.CASCADE, blank=True, null=True, related_name="Topic")
     Group = models.ForeignKey(User_Groups, on_delete=models.CASCADE, blank=True, null=True, related_name="User_Groups")
     Content = models.CharField(max_length=300, default=uuid.uuid1)
     Image = models.ImageField(blank=True, null=True)
+    Image2 = models.ImageField(blank=True, null=True)
+    Image3 = models.ImageField(blank=True, null=True)
+    Image4 = models.ImageField(blank=True, null=True)
+    ImageString = models.CharField(max_length=300, default="")
     Created = models.DateTimeField(auto_now_add=True)
     LikeCount = models.PositiveIntegerField(default=0)
     ReshareCount = models.PositiveIntegerField(default=0)
     CommentCount = models.PositiveIntegerField(default=0)
     Comments = models.ForeignKey('main.Comment', on_delete=models.CASCADE, blank=True, null=True, related_name="comment")
+    PostComments = models.ForeignKey('main.Post', on_delete=models.CASCADE, blank=True, null=True, related_name="postcomment")
+    IsOriginalpost = models.BooleanField(default=True)
+    IsQuotepost = models.BooleanField(default=False)
     IsRepost = models.BooleanField(default=False)
-    UserHasLiked = models.BooleanField(User, default=False)
+    IsLike = models.BooleanField(default=False)
+    IsComment = models.BooleanField(default=False)
+    UserHasLiked = models.BooleanField(default=False)
     UserHasReposted = models.BooleanField(default=False)
     RepostAuthor = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="repostAuthor")
     Reposted = models.DateTimeField(auto_now_add=True)
@@ -72,6 +89,11 @@ class Post(models.Model):
     Reposts = models.ManyToManyField(User, blank=True, related_name="reposts")
     Comment = models.ManyToManyField(User, blank=True, related_name="comments")
     Flags = models.ManyToManyField(User, blank=True, related_name="flags")
+    ReplyingTo = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="repto")
+    Caption = models.CharField(max_length=300, default=uuid.uuid1)
+    PostItem = models.ForeignKey('main.Post', on_delete=models.CASCADE, blank=True, null=True, related_name="pos")
+    Req_User_Follows_Author = models.BooleanField(default=False)
+    InteractionID = models.PositiveIntegerField(default=0)
     slug = models.SlugField(
         default='',
         editable=False,
@@ -80,7 +102,7 @@ class Post(models.Model):
     
     def __str__(self): 
         return self.Content
-        
+
 
 class Repost(models.Model):
     Reposter = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True,)
@@ -299,15 +321,20 @@ def _clean_user(user):
 class Muted(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="muted")
 
-    
+
+
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    Display_Name = models.CharField(max_length=30, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     Profile_Picture = models.ImageField(blank=True, null=True)
-    Liked_posts = models.ForeignKey('main.Liked_Post', on_delete=models.CASCADE, related_name='liked', blank=True, null=True)
+    Cover_Picture = models.ImageField(blank=True, null=True)
+    Liked_posts = models.ForeignKey('main.Post', on_delete=models.CASCADE, related_name='liked', blank=True, null=True)
     Reshared_posts = models.ForeignKey('main.Reshared_Post', on_delete=models.CASCADE, related_name='reshared', blank=True, null=True)
     Commented_posts = models.ForeignKey('main.Commented_Post', on_delete=models.CASCADE, related_name='comments_post', blank=True, null=True)
     Flagged_posts = models.ForeignKey('main.Flagged_Post', on_delete=models.CASCADE, related_name='flagged', blank=True, null=True)
@@ -319,6 +346,19 @@ class Profile(models.Model):
     User_Followers = models.ManyToManyField(User, blank=True, null=True, related_name='folwers')
     isPrivate = models.BooleanField(default=False)
     Groups = models.ForeignKey('main.User_Groups', on_delete=models.CASCADE, related_name='groups', blank=True, null=True)
+    Posts = models.ManyToManyField('main.Post', blank=True, null=True, related_name='psts')
+
+    def __str__(User):
+        return User.username
+
+    def __str__(User_Following):
+        return User_Following.User.username
+
+    def __str__(User_Followers):
+        return User_Followers.User.username      
+   
+    def __str__(self):
+        return self.user.username
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -340,16 +380,19 @@ class default_profile_pic(models.Model):
       
       
 class Message(models.Model):
-      post = models.ForeignKey('main.Post', on_delete=models.CASCADE, related_name='DMsPost', blank=True, null=True)
       sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
+      sender_profile_picture = models.CharField(max_length=300, blank=True, null=True)
       receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="receiver")
       msg_content = models.TextField(max_length=500, blank=True)
-      created_at = models.DateTimeField(auto_now_add=True)     
+      created_at = models.DateTimeField(auto_now_add=True)
+      is_shared_post = models.BooleanField(default=False)
+      post_id = models.PositiveIntegerField(default=0)  
 
 class Notification(models.Model):
       post = models.ForeignKey('main.Post', on_delete=models.CASCADE, related_name='NotificationPost', blank=True, null=True)
       sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notification_sender")
-      receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notification_receiver")
+      sender_profile_picture = models.CharField(max_length=300, blank=True, null=True)
+      receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notification_receiver", blank=True, null=True)
       is_comment_notification = models.BooleanField(default=False)
       is_like_notification = models.BooleanField(default=False)
       is_repost_notification = models.BooleanField(default=False)
