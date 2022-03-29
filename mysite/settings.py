@@ -96,6 +96,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'API.apps.ApiConfig',
+    'rest_framework_api_key',
     'rest_framework',
     'corsheaders',
 ]
