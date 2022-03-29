@@ -97,7 +97,6 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'API.apps.ApiConfig',
     'rest_framework',
-    'rest_framework_api_key',
     'corsheaders',
 ]
 
