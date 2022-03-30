@@ -2,6 +2,8 @@ from django.contrib import admin
 #from tinymce.widgets import TinyMCE
 from django.db import models
 from django.contrib import admin
+from django.contrib.admin import AdminSite
+from django.utils.translation import ugettext_lazy
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
@@ -32,7 +34,9 @@ admin.site.register(Notification)
 admin.site.register(User_Groups)
 admin.site.register(API_Test)
 admin.site.register(Meme_Template)
+admin.site.site_header = 'Purrfun administration'
 @admin.register(Comment)
+
 
 
 
@@ -77,6 +81,8 @@ class CustomUserAdmin(UserAdmin):
         if not obj:
             return list()
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
+
+     
         
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)   
