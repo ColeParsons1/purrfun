@@ -1424,7 +1424,7 @@ class PostViewSet(APIView):
 				serializer.validated_data['Author'] = prepared_data_variable
 				serializer.validated_data['Author_Profile'] = request.user.profile
 				serializer.validated_data['Content'] = Content
-				if serializer.validated_data['ImageString'] != "1":
+				if serializer.validated_data['Image'] != "":
 					serializer.validated_data['Image'] = serializer.validated_data['ImageString']
 				serializer.save()
 			elif serializer.validated_data['IsRepost'] != False and serializer.validated_data['IsLike'] == False and serializer.validated_data['IsComment'] == False:
