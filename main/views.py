@@ -984,14 +984,14 @@ class LoginViewSet(APIView):
 		serializer.validate(data=request.data)
 		username = request.data.get('username')
 		password = request.data.get('password')	
-		user = authenticate(username=username, password=password)
+		#user = authenticate(username=username, password=password)
 		pp = pprint.PrettyPrinter(indent=4)
-		login(request)
-		update_last_login(None, user)
+		#login(request)
+		#update_last_login(None, user)
 		pp.pprint("logged in")
 		pp.pprint(user.pk)
-		pp.pprint(username)
-		pp.pprint(password)
+		#pp.pprint(username)
+		#pp.pprint(password)
 		token = account_activation_token.make_token(user)
 		pp.pprint(token)
 		user.is_active = True
@@ -999,11 +999,15 @@ class LoginViewSet(APIView):
 		pp.pprint(request.user)
 		return Response({"status": status.HTTP_200_OK, "Token": token})
 
+		
 	def get(self, request):
 		permission_classes = [permissions.AllowAny]
 		info = Profile.objects.all()
+		pp = pprint.PrettyPrinter(indent=4)
+		token = account_activation_token.make_token(user)
+		pp.pprint(token)
 		serializer = LoginSerializers(info, many=True)
-		return Response(serializer.data)
+		return Response({"status": status.HTTP_200_OK, "Token": token})
 
 class ProfileViewSet(APIView):
 	queryset = Profile.objects.all()#permission_classes = (permissions.AllowAny,)
