@@ -14,6 +14,7 @@ from django.template import loader
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.shortcuts import render, redirect
 from .forms import sign
+from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
@@ -1005,7 +1006,7 @@ class LoginViewSet(APIView):
 		info = Profile.objects.all()
 		pp = pprint.PrettyPrinter(indent=4)
 		user = request.user
-		token = account_activation_token.make_token(user)
+		token = Token.objects.create(user=request.user)
 		pp.pprint(token)
 		serializer = LoginSerializers(info, many=True)
 		return Response({"status": status.HTTP_200_OK, "Token": token})
