@@ -52,12 +52,11 @@ REST_FRAMEWORK = {
 
     'DATETIME_FORMAT': "%m-%d-%Y | %H:%M",
 }
-
+#'rest_framework.authentication.BasicAuthentication',
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework_api_key.permissions.HasAPIKey',
+        'rest_framework.authentication.TokenAuthentication',
     ]
 }
 
@@ -103,6 +102,7 @@ INSTALLED_APPS = [
     'API.apps.ApiConfig',
     'rest_framework_api_key',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 ]
 
