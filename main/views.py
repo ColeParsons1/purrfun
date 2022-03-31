@@ -1051,7 +1051,8 @@ class PostDetailViewSet(APIView):
 class PostViewSet(APIView):
 	queryset = Post.objects.all()#permission_classes = (permissions.AllowAny,)
 	serializer = PostSerializer(queryset, many=True)
-	permission_classes = [permissions.AllowAny]
+	permission_classes = [permissions.IsAuthenticated]  
+	#permission_classes = [permissions.AllowAny]
 	#permission_classes = [HasAPIKey]
 	def get(self, request):
 		#queryset = Profile.objects.all()
