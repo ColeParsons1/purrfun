@@ -1004,6 +1004,7 @@ class LoginViewSet(APIView):
 		permission_classes = [permissions.AllowAny]
 		info = Profile.objects.all()
 		pp = pprint.PrettyPrinter(indent=4)
+		user = request.user
 		token = account_activation_token.make_token(user)
 		pp.pprint(token)
 		serializer = LoginSerializers(info, many=True)
