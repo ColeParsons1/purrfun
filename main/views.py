@@ -7,6 +7,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.http import JsonResponse
 import json
+from rest_framework_api_key.permissions import HasAPIKey
 from django.db.models import Q
 from django.template import loader
 #from django.conf.urls import url
@@ -1045,7 +1046,8 @@ class PostDetailViewSet(APIView):
 class PostViewSet(APIView):
 	queryset = Post.objects.all()#permission_classes = (permissions.AllowAny,)
 	serializer = PostSerializer(queryset, many=True)
-	permission_classes = [permissions.AllowAny]
+	#permission_classes = [permissions.AllowAny]
+	permission_classes = [HasAPIKey]
 	def get(self, request):
 		#queryset = Profile.objects.all()
 		#Author__contains=request.user.profile.User_Following
