@@ -56,7 +56,6 @@ REST_FRAMEWORK = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
     ]
 }
 
@@ -102,7 +101,6 @@ INSTALLED_APPS = [
     'API.apps.ApiConfig',
     'rest_framework_api_key',
     'rest_framework',
-    'rest_framework.authtoken',
     'corsheaders',
 ]
 
