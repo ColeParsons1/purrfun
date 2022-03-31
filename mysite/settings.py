@@ -35,7 +35,9 @@ LOGGING = {
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4tua0um*_4(lzuz($o@chs0rm9m)6_9#9_f$$xzp=x(3g6y5i1'
+SECRET_KEY = 'pbkdf2_5Fsha256_24320000_24bszKAb7hsgPA6MTwCGSw8i_24nVDeZS5ITIx7YCLTidO2J9j7yNIhlgUWTSvuOqLEcRU_3D'
+
+#SECRET_KEY = '4tua0um*_4(lzuz($o@chs0rm9m)6_9#9_f$$xzp=x(3g6y5i1'
 
 #API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
 
@@ -44,7 +46,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*','69.55.60.135', 'musicbase.io', '69.55.60.129']
 
-API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
+#API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
 
 REST_FRAMEWORK = {
 
@@ -55,6 +57,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_api_key.permissions.HasAPIKey',
     ]
 }
 
