@@ -44,6 +44,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*','69.55.60.135', 'musicbase.io', '69.55.60.129']
 
+API_KEY_CUSTOM_HEADER = "HTTP_X_API_KEY"
+
 REST_FRAMEWORK = {
 
     'DATETIME_FORMAT': "%m-%d-%Y | %H:%M",
