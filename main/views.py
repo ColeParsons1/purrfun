@@ -1022,6 +1022,9 @@ class ProfileViewSet(APIView):
 		return Response(serializer.data)
 
 
+	
+
+
 class ProfileOtherUserViewSet(APIView):
 	queryset = Profile.objects.all()#permission_classes = (permissions.AllowAny,)
 	serializer = ProfileSerializer(queryset, many=True)
@@ -1029,7 +1032,10 @@ class ProfileOtherUserViewSet(APIView):
 	def get(self, request):
 		permission_classes = [permissions.AllowAny]
 		profile = Profile.objects.all()
+		
 		serializer = ProfileSerializer(profile, many=True)
+		pp = pprint.PrettyPrinter(indent=4)
+		pp.pprint(serializer.data)
 		return Response(serializer.data)		
 
 class PostDetailViewSet(APIView):
