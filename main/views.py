@@ -1028,7 +1028,7 @@ class ProfileOtherUserViewSet(APIView):
 	permission_classes = [permissions.AllowAny]
 	def get(self, request):
 		permission_classes = [permissions.AllowAny]
-		profile = Profile.objects.all()
+		profile = Profile.objects.filter(user=request.user)
 		serializer = ProfileSerializer(profile, many=True)
 		return Response(serializer.data)		
 
