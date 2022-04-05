@@ -1022,9 +1022,6 @@ class ProfileViewSet(APIView):
 		return Response(serializer.data)
 
 
-	
-
-
 class ProfileOtherUserViewSet(APIView):
 	queryset = Profile.objects.all()#permission_classes = (permissions.AllowAny,)
 	serializer = ProfileSerializer(queryset, many=True)
