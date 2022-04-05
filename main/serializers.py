@@ -76,7 +76,6 @@ class PostSerializer(serializers.ModelSerializer):
 	Image3 = serializers.SerializerMethodField()
 	Image4 = serializers.SerializerMethodField()
 	RepostAuthor = serializers.SerializerMethodField()
-	Author_Profile = serializers.SerializerMethodField()
 	def get_Author(self, Post):
 		if Post.Author:
 			return Post.Author.username
@@ -108,11 +107,7 @@ class PostSerializer(serializers.ModelSerializer):
 	def get_RepostAuthor(self, Post):
 		if Post.RepostAuthor:
 			return Post.RepostAuthor.profile.Display_Name
-		return ""
-	def get_Author_Profile(self, Post):
-		if Post.Author_Profile:
-			return Post.Author_Profile.id
-		return "" 	                                 
+		return ""	                                 
    
 
 	class Meta:
