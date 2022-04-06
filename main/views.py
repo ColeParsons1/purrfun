@@ -1019,7 +1019,7 @@ class ProfileViewSet(APIView):
 	def get(self, request):
 		permission_classes = [permissions.AllowAny]
 		#profiles = Profile.objects.filter(user=request.user)
-		profiles = Profile.objects.all()
+		profiles = Profile.objects.filter(user=request.user)
 		serializer = ProfileSerializer(profiles, many=True)
 		return Response(serializer.data)
 
@@ -1030,7 +1030,7 @@ class ProfileOtherUserViewSet(APIView):
 	permission_classes = [permissions.AllowAny]
 	def get(self, request):
 		permission_classes = [permissions.AllowAny]
-		profile = Profile.objects.filter(user=request.user)
+		profile = Profile.objects.all()
 		serializer = ProfileLinkSerializer(profile, many=True)
 		return Response(serializer.data)		
 
