@@ -43,6 +43,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import ProfileSerializer
+from .serializers import ProfileLinkSerializer
 from .serializers import PostSerializer
 from .serializers import LikePostSerializer
 from .serializers import MessageSerializer
@@ -1024,12 +1025,12 @@ class ProfileViewSet(APIView):
 
 class ProfileOtherUserViewSet(APIView):
 	queryset = Profile.objects.all()#permission_classes = (permissions.AllowAny,)
-	serializer = ProfileSerializer(queryset, many=True)
+	serializer = ProfileLinkSerializer(queryset, many=True)
 	permission_classes = [permissions.AllowAny]
 	def get(self, request):
 		permission_classes = [permissions.AllowAny]
 		profile = Profile.objects.filter(user=request.user)
-		serializer = ProfileSerializer(profile, many=True)
+		serializer = ProfileLinkSerializer(profile, many=True)
 		return Response(serializer.data)		
 
 class PostDetailViewSet(APIView):

@@ -24,7 +24,47 @@ class TemplateSerializer(serializers.ModelSerializer):
 		fields = (
 		'id',
 		'Image',
-		) 
+		)
+
+
+class ProfileLinkSerializer(serializers.ModelSerializer):
+	user = serializers.SerializerMethodField()
+	likes = serializers.SerializerMethodField()
+	Profile_Picture = serializers.SerializerMethodField()
+	Display_Name = serializers.SerializerMethodField()
+	def get_user(self, Profile):
+		if Profile.user.username:
+			return Profile.user.username
+		return default
+	def get_likes(self, Profile):
+		if Profile.Liked_posts:
+			return Profile.Liked_posts.Content
+		return ""
+	def get_Profile_Picture(self, Profile):
+		if Profile.Profile_Picture:
+			return Profile.Profile_Picture.url
+		return ""
+	def get_Display_Name(self, Profile):
+		if Profile.Display_Name:
+			return Profile.Display_Name
+		return ""
+
+	
+	class Meta:
+		model = Profile
+		fields = (
+		'id',	
+		'user',
+		'Display_Name',
+		'bio',
+		'location',
+		'birth_date',
+		'User_Following',
+		'User_Followers',
+		'Profile_Picture',
+		'Cover_Picture',
+		'likes',	
+		)  
 
 
 class ProfileSerializer(serializers.ModelSerializer):
