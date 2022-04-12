@@ -1520,7 +1520,7 @@ class MessageViewSet(APIView):
 			serializer.validated_data['sender'] = prepared_data_variable
 			#serializer.validated_data['receiver'] = receiverUser
 			serializer.validated_data['msg_content'] = data.get('msg_content')
-			Message.objects.create(sender=request.user, msg_content=data.get('msg_content'), receiver=receiverUser)
+			Message.objects.create(sender=request.user, msg_content=data.get('msg_content'), receiver=receiverUser.user)
 		return Response(serializer.data)
   
 
