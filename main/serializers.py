@@ -224,8 +224,13 @@ class LikePostSerializer(serializers.ModelSerializer):
 		
 
 class MessageSerializer(serializers.ModelSerializer):
+	sender = serializers.SerializerMethodField()
 	sender_profile_picture = serializers.SerializerMethodField()
 	receiver = serializers.SerializerMethodField()
+	def get_sender(self, Message):
+		if Message.sender:
+			return Message.sender.username
+		return ""
 	def get_sender_profile_picture(self, Message):
 		if Message.sender:
 			return Message.sender.profile.Profile_Picture.url
