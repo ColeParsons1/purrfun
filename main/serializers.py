@@ -224,21 +224,16 @@ class LikePostSerializer(serializers.ModelSerializer):
 		
 
 class MessageSerializer(serializers.ModelSerializer):
-	sender = serializers.SerializerMethodField()
 	sender_profile_picture = serializers.SerializerMethodField()
 	receiver = serializers.SerializerMethodField()
-	def get_sender(self, Message):
-		if Message.sender.username:
-			return Message.sender.username
-		return default
 	def get_sender_profile_picture(self, Message):
-		if Message.sender.username:
+		if Message.sender:
 			return Message.sender.profile.Profile_Picture.url
-		return default	
+		return ""	
 	def get_receiver(self, Message):
 		if Message.receiver.username:
 			return Message.receiver.username
-		return default	
+		return ""	
 	
 		
 	class Meta:
