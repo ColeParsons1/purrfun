@@ -1511,7 +1511,7 @@ class MessageViewSet(APIView):
 		#receiver = serializer.receiver
 		data = request.data
 		receiverName = data.get('receiver')
-		receiverUser = Users.objects.filter(username=receiverName)
+		receiverUser = User.objects.filter(username=receiverName)
 		if serializer.is_valid():
 			if serializer.validated_data['is_shared_post'] == True:
 				post_id = data.get('post_id')
