@@ -1510,9 +1510,10 @@ class MessageViewSet(APIView):
 		#messages = Message.objects.filter(Q(receiver__username=request.user.username) | Q(sender__username=request.user.username))
 		#receiver = serializer.receiver
 		data = request.data
-		User = get_user_model()
+		#User = get_user_model()
+		
 		receiverName = data.get('receiver')
-		receiverUser = User.objects.filter(username=receiverName)
+		receiverUser = User.objects.get(username=receiverName)
 		if serializer.is_valid():
 			if serializer.validated_data['is_shared_post'] == True:
 				post_id = data.get('post_id')
@@ -1520,7 +1521,7 @@ class MessageViewSet(APIView):
 			serializer.validated_data['sender'] = prepared_data_variable
 			#serializer.validated_data['receiver'] = receiverUser
 			serializer.validated_data['msg_content'] = data.get('msg_content')
-			Message.objects.create(sender=request.user, msg_content=data.get('msg_content'), receiver=receiverUser.user)
+			Message.objects.create(sender=request.user, msg_content=data.get('msg_content'), receiver=receiverUser)
 		return Response(serializer.data)
   
 
