@@ -1023,7 +1023,6 @@ class ProfileViewSet(APIView):
 		serializer = ProfileSerializer(profiles, many=True)
 		return Response(serializer.data)
 
-
 class ProfileOtherUserViewSet(APIView):
 	queryset = Profile.objects.all()#permission_classes = (permissions.AllowAny,)
 	serializer = ProfileLinkSerializer(queryset, many=True)
@@ -1511,12 +1510,14 @@ class MessageViewSet(APIView):
 		#messages = Message.objects.filter(Q(receiver__username=request.user.username) | Q(sender__username=request.user.username))
 		#receiver = serializer.receiver
 		data = request.data
+		receiverName = data.get('receiver')
+		receiverUser = Users.objects.filter(username=receiverName)
 		if serializer.is_valid():
 			if serializer.validated_data['is_shared_post'] == True:
 				post_id = data.get('post_id')
 				msg(request, post_id)
 			serializer.validated_data['sender'] = prepared_data_variable
-			serializer.validated_data['receiver'] = data.get('receiver')
+			serializer.validated_data['receiver'] = receiverUser
 			serializer.validated_data['msg_content'] = data.get('msg_content')
 			Message.objects.create(sender=request.user, msg_content=data.get('msg_content'), receiver=data.get('receiver'))
 		return Response(serializer.data)
