@@ -1510,6 +1510,7 @@ class MessageViewSet(APIView):
 		#messages = Message.objects.filter(Q(receiver__username=request.user.username) | Q(sender__username=request.user.username))
 		#receiver = serializer.receiver
 		data = request.data
+		User = get_user_model()
 		receiverName = data.get('receiver')
 		receiverUser = User.objects.filter(username=receiverName)
 		if serializer.is_valid():
