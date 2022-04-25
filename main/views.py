@@ -1426,6 +1426,10 @@ class PostViewSet(APIView):
 			Content = checked
 		if "jb" in Content.replace(" ", ""):
 			Content = checked
+		if "left" in Content.replace(" ", ""):
+			Content = checked
+		if "Left" in Content.replace(" ", ""):
+			Content = checked		
 		if Content == checked:
 			Content.delete()												
 		else:
