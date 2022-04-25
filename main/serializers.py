@@ -29,17 +29,12 @@ class TemplateSerializer(serializers.ModelSerializer):
 
 class ProfileLinkSerializer(serializers.ModelSerializer):
 	user = serializers.SerializerMethodField()
-	likes = serializers.SerializerMethodField()
 	Profile_Picture = serializers.SerializerMethodField()
 	Display_Name = serializers.SerializerMethodField()
 	def get_user(self, Profile):
 		if Profile.user.username:
 			return Profile.user.username
 		return default
-	def get_likes(self, Profile):
-		if Profile.Liked_posts:
-			return Profile.Liked_posts.Content
-		return ""
 	def get_Profile_Picture(self, Profile):
 		if Profile.Profile_Picture:
 			return Profile.Profile_Picture.url
@@ -62,24 +57,18 @@ class ProfileLinkSerializer(serializers.ModelSerializer):
 		'User_Following',
 		'User_Followers',
 		'Profile_Picture',
-		'Cover_Picture',
-		'likes',	
+		'Cover_Picture',	
 		)  
 
 
 class ProfileSerializer(serializers.ModelSerializer):
 	user = serializers.SerializerMethodField()
-	likes = serializers.SerializerMethodField()
 	Profile_Picture = serializers.SerializerMethodField()
 	Display_Name = serializers.SerializerMethodField()
 	def get_user(self, Profile):
 		if Profile.user.username:
 			return Profile.user.username
 		return default
-	def get_likes(self, Profile):
-		if Profile.Liked_posts:
-			return Profile.Liked_posts.Content
-		return ""
 	def get_Profile_Picture(self, Profile):
 		if Profile.Profile_Picture:
 			return Profile.Profile_Picture.url
@@ -102,8 +91,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 		'User_Following',
 		'User_Followers',
 		'Profile_Picture',
-		'Cover_Picture',
-		'likes',	
+		'Cover_Picture',	
 		)           
 
 

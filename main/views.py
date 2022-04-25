@@ -608,7 +608,7 @@ def like(post_id, user):
 	#Flagged_Post.objects.create(post=post)
 	user.profile.save()
 	post.save()
-	return HttpResponse('<script>history.back();</script>')
+	#return HttpResponse('<script>history.back();</script>')
 	#return redirect('index')
 		
 	template = loader.get_template('main/index.html')
@@ -1077,356 +1077,357 @@ class PostViewSet(APIView):
 		username = request.user.username
 		user = request.user
 		data = request.data
-		#post_to_feed(request, data)
 		Content = data.get('Content')
 		checked = "My vibe has been checked :("
 
-		if "enate" in Content:
+		if "enate" in Content.replace(" ", ""):
 			Content = checked
-		if "olitic" in Content:
+		if "olitic" in Content.replace(" ", ""):
 			Content = checked	
-		if "limate" in Content:
+		if "limate" in Content.replace(" ", ""):
 			Content = checked
-		if "rump" in Content:
+		if "rump" in Content.replace(" ", ""):
 			Content = checked
-		if "police" in Content:
+		if "police" in Content.replace(" ", ""):
 			Content = checked
-		if "elect" in Content:
+		if "elect" in Content.replace(" ", ""):
 			Content = checked
-		if "epublican" in Content:
+		if "epublican" in Content.replace(" ", ""):
 			Content = checked
-		if "emocrat" in Content:
+		if "emocrat" in Content.replace(" ", ""):
 			Content = checked
-		if "Biden" in Content:
+		if "Biden" in Content.replace(" ", ""):
 			Content = checked
-		if "acist" in Content:
+		if "acist" in Content.replace(" ", ""):
 			Content = checked
-		if "acism" in Content:
+		if "acism" in Content.replace(" ", ""):
 			Content = checked
-		if "ropaganda" in Content:
+		if "ropaganda" in Content.replace(" ", ""):
 			Content = checked
-		if "emocracy" in Content:
+		if "emocracy" in Content.replace(" ", ""):
 			Content = checked
-		if "racial" in Content:
+		if "racial" in Content.replace(" ", ""):
 			Content = checked
-		if "acial" in Content:
+		if "acial" in Content.replace(" ", ""):
 			Content = checked    
-		if "rivelage" in Content:
+		if "rivelage" in Content.replace(" ", ""):
 			Content = checked
-		if "hite" in Content:
+		if "hite" in Content.replace(" ", ""):
 			Content = checked
-		if "lave" in Content:
+		if "lave" in Content.replace(" ", ""):
 			Content = checked
-		if "BLM" in Content:
+		if "BLM" in Content.replace(" ", ""):
 			Content = checked
-		if "blm" in Content:
+		if "blm" in Content.replace(" ", ""):
 			Content = checked
-		if "lack lives matter" in Content:
+		if "lack lives matter" in Content.replace(" ", ""):
 			Content = checked
-		if "president" in Content:
+		if "president" in Content.replace(" ", ""):
 			Content = checked
-		if "vote" in Content:
+		if "vote" in Content.replace(" ", ""):
 			Content = checked
-		if "GOP" in Content:
+		if "GOP" in Content.replace(" ", ""):
 			Content = checked
-		if "upreme court" in Content:
+		if "upreme court" in Content.replace(" ", ""):
 			Content = checked
-		if "KKK" in Content:
+		if "KKK" in Content.replace(" ", ""):
 			Content = checked
-		if "ongress" in Content:
+		if "ongress" in Content.replace(" ", ""):
 			Content = checked
-		if "apitol" in Content:
+		if "apitol" in Content.replace(" ", ""):
 			Content = checked
-		if "law" in Content:
+		if "law" in Content.replace(" ", ""):
 			Content = checked
-		if "tax" in Content:
+		if "tax" in Content.replace(" ", ""):
 			Content = checked
-		if "DNC" in Content:
+		if "DNC" in Content.replace(" ", ""):
 			Content = checked
-		if "RNC" in Content:
+		if "RNC" in Content.replace(" ", ""):
 			Content = checked
-		if "andidate" in Content:
+		if "andidate" in Content.replace(" ", ""):
 			Content = checked
-		if "CNN" in Content:
+		if "CNN" in Content.replace(" ", ""):
 			Content = checked
-		if "olice" in Content:
+		if "olice" in Content.replace(" ", ""):
 			Content = checked
-		if "fficer" in Content:
+		if "fficer" in Content.replace(" ", ""):
 			Content = checked
-		if "enator" in Content:
+		if "enator" in Content.replace(" ", ""):
 			Content = checked
-		if "overn" in Content:
+		if "overn" in Content.replace(" ", ""):
 			Content = checked
-		if "onstitution" in Content:
+		if "onstitution" in Content.replace(" ", ""):
 			Content = checked
-		if "NRA" in Content:
+		if "NRA" in Content.replace(" ", ""):
 			Content = checked
-		if "nra" in Content:
+		if "nra" in Content.replace(" ", ""):
 			Content = checked
-		if "kkk" in Content:
+		if "kkk" in Content.replace(" ", ""):
 			Content = checked
-		if "ealthcare" in Content:
+		if "ealthcare" in Content.replace(" ", ""):
 			Content = checked
-		if "mendmant" in Content:
+		if "mendmant" in Content.replace(" ", ""):
 			Content = checked
-		if "gun" in Content:
+		if "gun" in Content.replace(" ", ""):
 			Content = checked
-		if "ilibuster" in Content:
+		if "ilibuster" in Content.replace(" ", ""):
 			Content = checked
-		if "hite house" in Content:
+		if "hite house" in Content.replace(" ", ""):
 			Content = checked
-		if "hite House" in Content:
+		if "hite House" in Content.replace(" ", ""):
 			Content = checked
-		if "ederal" in Content:
+		if "ederal" in Content.replace(" ", ""):
 			Content = checked
-		if "QAnon" in Content:
+		if "QAnon" in Content.replace(" ", ""):
 			Content = checked
-		if "ovid" in Content:
+		if "ovid" in Content.replace(" ", ""):
 			Content = checked
-		if "accin" in Content:
+		if "accin" in Content.replace(" ", ""):
 			Content = checked
-		if "ommunis" in Content:
+		if "ommunis" in Content.replace(" ", ""):
 			Content = checked
-		if "Asian" in Content:
+		if "Asian" in Content.replace(" ", ""):
 			Content = checked
-		if "union" in Content:
+		if "union" in Content.replace(" ", ""):
 			Content = checked
-		if "tudent debt" in Content:
+		if "tudent debt" in Content.replace(" ", ""):
 			Content = checked
-		if "tudent Debt" in Content:
+		if "tudent Debt" in Content.replace(" ", ""):
 			Content = checked
-		if "rotest" in Content:
+		if "rotest" in Content.replace(" ", ""):
 			Content = checked
-		if "orporation" in Content:
+		if "orporation" in Content.replace(" ", ""):
 			Content = checked
-		if "ight wing" in Content:
+		if "ight wing" in Content.replace(" ", ""):
 			Content = checked
-		if "eft wing" in Content:
+		if "eft wing" in Content.replace(" ", ""):
 			Content = checked
-		if "ight-wing" in Content:
+		if "ight-wing" in Content.replace(" ", ""):
 			Content = checked
-		if "eft-wing" in Content:
+		if "eft-wing" in Content.replace(" ", ""):
 			Content = checked 
-		if "mmigrant" in Content:
+		if "mmigrant" in Content.replace(" ", ""):
 			Content = checked
-		if "edicare" in Content:
+		if "edicare" in Content.replace(" ", ""):
 			Content = checked
-		if "edicaid" in Content:
+		if "edicaid" in Content.replace(" ", ""):
 			Content = checked
-		if "ecretary" in Content:
+		if "ecretary" in Content.replace(" ", ""):
 			Content = checked
-		if "ilitary" in Content:
+		if "ilitary" in Content.replace(" ", ""):
 			Content = checked
-		if "Obama" in Content:
+		if "Obama" in Content.replace(" ", ""):
 			Content = checked
-		if "obama" in Content:
+		if "obama" in Content.replace(" ", ""):
 			Content = checked
-		if "un control" in Content:
+		if "un control" in Content.replace(" ", ""):
 			Content = checked
-		if "azi" in Content:
+		if "azi" in Content.replace(" ", ""):
 			Content = checked
-		if "iot" in Content:
+		if "iot" in Content.replace(" ", ""):
 			Content = checked
-		if "USDA" in Content:
+		if "USDA" in Content.replace(" ", ""):
 			Content = checked
-		if "usda" in Content:
+		if "usda" in Content.replace(" ", ""):
 			Content = checked
-		if "FDA" in Content:
+		if "FDA" in Content.replace(" ", ""):
 			Content = checked
-		if "fda" in Content:
+		if "fda" in Content.replace(" ", ""):
 			Content = checked
-		if "ascis" in Content:
+		if "ascis" in Content.replace(" ", ""):
 			Content = checked
-		if "harma" in Content:
+		if "harma" in Content.replace(" ", ""):
 			Content = checked
-		if "FBI" in Content:
+		if "FBI" in Content.replace(" ", ""):
 			Content = checked
-		if "Tax" in Content:
+		if "Tax" in Content.replace(" ", ""):
 			Content = checked
-		if "uthoritarian" in Content:
+		if "uthoritarian" in Content.replace(" ", ""):
 			Content = checked
-		if "olitician" in Content:
+		if "olitician" in Content.replace(" ", ""):
 			Content = checked
-		if "onservative" in Content:
+		if "onservative" in Content.replace(" ", ""):
 			Content = checked
-		if "uslim" in Content:
+		if "uslim" in Content.replace(" ", ""):
 			Content = checked
-		if "lection" in Content:
+		if "lection" in Content.replace(" ", ""):
 			Content = checked
-		if "hristian" in Content:
+		if "hristian" in Content.replace(" ", ""):
 			Content = checked
-		if "arxis" in Content:
+		if "arxis" in Content.replace(" ", ""):
 			Content = checked
-		if "narch" in Content:
+		if "narch" in Content.replace(" ", ""):
 			Content = checked
-		if "OVID" in Content:
+		if "OVID" in Content.replace(" ", ""):
 			Content = checked
-		if "oronavirus" in Content:
+		if "oronavirus" in Content.replace(" ", ""):
 			Content = checked
-		if "elhi" in Content:
+		if "elhi" in Content.replace(" ", ""):
 			Content = checked
-		if "media" in Content:
+		if "media" in Content.replace(" ", ""):
 			Content = checked
-		if "Media" in Content:
+		if "Media" in Content.replace(" ", ""):
 			Content = checked
-		if "United States" in Content:
+		if "United States" in Content.replace(" ", ""):
 			Content = checked
-		if "hreat" in Content:
+		if "hreat" in Content.replace(" ", ""):
 			Content = checked
-		if "AOC" in Content:
+		if "AOC" in Content.replace(" ", ""):
 			Content = checked
-		if "aoc" in Content:
+		if "aoc" in Content.replace(" ", ""):
 			Content = checked
-		if "God " in Content:
+		if "God " in Content.replace(" ", ""):
 			Content = checked
-		if "ibertarian" in Content:
+		if "ibertarian" in Content.replace(" ", ""):
 			Content = checked
-		if "iberal" in Content:
+		if "iberal" in Content.replace(" ", ""):
 			Content = checked
-		if "1A" in Content:
+		if "1A" in Content.replace(" ", ""):
 			Content = checked
-		if "2A" in Content:
+		if "2A" in Content.replace(" ", ""):
 			Content = checked
-		if "saki" in Content:
+		if "saki" in Content.replace(" ", ""):
 			Content = checked
-		if "order" in Content:
+		if "order" in Content.replace(" ", ""):
 			Content = checked
-		if "un control" in Content:
+		if "un control" in Content.replace(" ", ""):
 			Content = checked
-		if "eftist" in Content:
+		if "eftist" in Content.replace(" ", ""):
 			Content = checked
-		if "mpeach" in Content:
+		if "mpeach" in Content.replace(" ", ""):
 			Content = checked
-		if "ountry" in Content:
+		if "ountry" in Content.replace(" ", ""):
 			Content = checked
-		if "ountries" in Content:
+		if "ountries" in Content.replace(" ", ""):
 			Content = checked
-		if "partisan" in Content:
+		if "partisan" in Content.replace(" ", ""):
 			Content = checked
-		if "Partisan" in Content:
+		if "Partisan" in Content.replace(" ", ""):
 			Content = checked
-		if "lobal" in Content:
+		if "lobal" in Content.replace(" ", ""):
 			Content = checked
-		if "auci" in Content:
+		if "auci" in Content.replace(" ", ""):
 			Content = checked
-		if "Cox" in Content:
+		if "Cox" in Content.replace(" ", ""):
 			Content = checked
-		if "reen party" in Content:
+		if "reen party" in Content.replace(" ", ""):
 			Content = checked
-		if "reen Party" in Content:
+		if "reen Party" in Content.replace(" ", ""):
 			Content = checked
-		if "ncap" in Content:
+		if "ncap" in Content.replace(" ", ""):
 			Content = checked
-		if "rexit" in Content:
+		if "rexit" in Content.replace(" ", ""):
 			Content = checked
-		if "onfederate" in Content:
+		if "onfederate" in Content.replace(" ", ""):
 			Content = checked
-		if "flag" in Content:
+		if "flag" in Content.replace(" ", ""):
 			Content = checked
-		if "IRS" in Content:
+		if "IRS" in Content.replace(" ", ""):
 			Content = checked
-		if "ardon" in Content:
+		if "ardon" in Content.replace(" ", ""):
 			Content = checked
-		if "Build Back Better" in Content:
+		if "Build Back Better" in Content.replace(" ", ""):
 			Content = checked
-		if "uild back better" in Content:
+		if "uild back better" in Content.replace(" ", ""):
 			Content = checked
-		if "nigge" in Content:
+		if "nigge" in Content.replace(" ", ""):
 			Content = checked
-		if "Nigge" in Content:
+		if "Nigge" in Content.replace(" ", ""):
 			Content = checked    
-		if "range man" in Content:
+		if "range man" in Content.replace(" ", ""):
 			Content = checked
-		if "range Man" in Content:
+		if "range Man" in Content.replace(" ", ""):
 			Content = checked
-		if "hristian" in Content:
+		if "hristian" in Content.replace(" ", ""):
 			Content = checked
-		if "ewish" in Content:
+		if "ewish" in Content.replace(" ", ""):
 			Content = checked
-		if "Jew" in Content:
+		if "Jew" in Content.replace(" ", ""):
 			Content = checked
-		if "jew" in Content:
+		if "jew" in Content.replace(" ", ""):
 			Content = checked
-		if "Jesus do" in Content:
+		if "Jesus do" in Content.replace(" ", ""):
 			Content = checked
-		if "Jesus said" in Content:
+		if "Jesus said" in Content.replace(" ", ""):
 			Content = checked
-		if "ace theory" in Content:
+		if "ace theory" in Content.replace(" ", ""):
 			Content = checked
-		if "ace Theory" in Content:
+		if "ace Theory" in Content.replace(" ", ""):
 			Content = checked
-		if "ar on Drugs" in Content:
+		if "ar on Drugs" in Content.replace(" ", ""):
 			Content = checked
-		if "ar on drugs" in Content:
+		if "ar on drugs" in Content.replace(" ", ""):
 			Content = checked
-		if "leepy Joe" in Content:
+		if "leepy Joe" in Content.replace(" ", ""):
 			Content = checked
-		if "leepy joe" in Content:
+		if "leepy joe" in Content.replace(" ", ""):
 			Content = checked
-		if "aetz" in Content:
+		if "aetz" in Content.replace(" ", ""):
 			Content = checked
-		if "allot" in Content:
+		if "allot" in Content.replace(" ", ""):
 			Content = checked
-		if "stablish" in Content:
+		if "stablish" in Content.replace(" ", ""):
 			Content = checked
-		if "he news" in Content:
+		if "he news" in Content.replace(" ", ""):
 			Content = checked
-		if "ox news" in Content:
+		if "ox news" in Content.replace(" ", ""):
 			Content = checked
-		if "ox News" in Content:
+		if "ox News" in Content.replace(" ", ""):
 			Content = checked
-		if "ransphob" in Content:
+		if "ransphob" in Content.replace(" ", ""):
 			Content = checked
-		if " rights" in Content:
+		if " rights" in Content.replace(" ", ""):
 			Content = checked
-		if "Rights" in Content:
+		if "Rights" in Content.replace(" ", ""):
 			Content = checked
-		if "egulat" in Content:
+		if "egulat" in Content.replace(" ", ""):
 			Content = checked
-		if "ender" in Content:
+		if "ender" in Content.replace(" ", ""):
 			Content = checked
-		if "olocaust" in Content:
+		if "olocaust" in Content.replace(" ", ""):
 			Content = checked
-		if "eminis" in Content:
+		if "eminis" in Content.replace(" ", ""):
 			Content = checked
-		if "elfare" in Content:
+		if "elfare" in Content.replace(" ", ""):
 			Content = checked
-		if "hapiro" in Content:
+		if "hapiro" in Content.replace(" ", ""):
 			Content = checked
-		if "ucker Carlson" in Content:
+		if "ucker Carlson" in Content.replace(" ", ""):
 			Content = checked
-		if "ucker carlson" in Content:
+		if "ucker carlson" in Content.replace(" ", ""):
 			Content = checked
-		if "itch Mcconnel" in Content:
+		if "itch Mcconnel" in Content.replace(" ", ""):
 			Content = checked
-		if "itler" in Content:
+		if "itler" in Content.replace(" ", ""):
 			Content = checked
-		if "anon" in Content:
+		if "anon" in Content.replace(" ", ""):
 			Content = checked
-		if "eagan" in Content:
+		if "eagan" in Content.replace(" ", ""):
 			Content = checked
-		if " war" in Content:
+		if " war" in Content.replace(" ", ""):
 			Content = checked
-		if "War " in Content:
+		if "War " in Content.replace(" ", ""):
 			Content = checked
-		if "ussia" in Content:
+		if "ussia" in Content.replace(" ", ""):
 			Content = checked
-		if "nvade" in Content:
+		if "nvade" in Content.replace(" ", ""):
 			Content = checked
-		if "roops" in Content:
+		if "roops" in Content.replace(" ", ""):
 			Content = checked
-		if "WW3" in Content:
+		if "WW3" in Content.replace(" ", ""):
 			Content = checked
-		if "ar 3" in Content:
+		if "ar 3" in Content.replace(" ", ""):
 			Content = checked
-		if "ar III" in Content:
+		if "ar III" in Content.replace(" ", ""):
 			Content = checked
-		if "WWIII" in Content:
+		if "WWIII" in Content.replace(" ", ""):
 			Content = checked
-		if "JB" in Content:
+		if "JB" in Content.replace(" ", ""):
 			Content = checked
-		if "jb" in Content:
-			Content = checked											
+		if "jb" in Content.replace(" ", ""):
+			Content = checked
+		if Content == checked:
+			Content.delete()												
 		else:
 			Content = Content
 		if serializer.is_valid():

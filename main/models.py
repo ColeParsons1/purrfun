@@ -334,7 +334,7 @@ class Profile(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     Profile_Picture = models.ImageField(blank=True, null=True)
     Cover_Picture = models.ImageField(blank=True, null=True)
-    Liked_posts = models.ForeignKey('main.Post', on_delete=models.CASCADE, related_name='liked', blank=True, null=True)
+    Liked_posts = models.ManyToManyField('main.Post', related_name='liked', blank=True, null=True)
     Reshared_posts = models.ForeignKey('main.Reshared_Post', on_delete=models.CASCADE, related_name='reshared', blank=True, null=True)
     Commented_posts = models.ForeignKey('main.Commented_Post', on_delete=models.CASCADE, related_name='comments_post', blank=True, null=True)
     Flagged_posts = models.ForeignKey('main.Flagged_Post', on_delete=models.CASCADE, related_name='flagged', blank=True, null=True)
